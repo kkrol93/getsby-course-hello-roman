@@ -1,7 +1,8 @@
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
-    description: 'Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.',
+    description:
+      'Kick off your next, great Gatsby project with this default starter. This barebones starter ships with the main Gatsby configuration files you might need.',
     author: '@gatsbyjs',
   },
   plugins: [
@@ -51,7 +52,7 @@ module.exports = {
         eslint: {
           patterns: [], // string or array of paths/files/globs to include related only to ESLint
           ignorePatterns: [], // string or array of paths/files/globs to exclude related only to ESLint
-          formatter: 'prettier', // set custom or third party formatter
+          formatter: 'stylish', // set custom or third party formatter
           maxWarnings: undefined, // number of max warnings allowed, when exceed it will fail Gatsby build
           emitWarning: true, // if true, will emit lint warnings
           failOnError: false, // if true, any lint error will fail the build, you may set true only in your prod config
