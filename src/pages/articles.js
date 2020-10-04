@@ -30,6 +30,7 @@ const ArticlesPage = ({ data }) => {
             title={title}
             excerpt={excerpt}
             image={featuredImage.childImageSharp.fluid}
+            slug={slug}
           />
         ))}
       </ArticlesWrapper>
