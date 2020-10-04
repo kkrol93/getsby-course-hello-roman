@@ -1,5 +1,6 @@
 import React from 'react';
 import { graphql } from 'gatsby';
+import Image from 'gatsby-image';
 import styled from 'styled-components';
 import Button from '../components/Button/Button';
 
@@ -22,8 +23,8 @@ const ContentWrapper = styled.div`
     width: 40%;
   }
 `;
-const ImageWrapper = styled.img`
-  position: absolute;
+const StyledImage = styled(Image)`
+  position: absolute !important;
   top: 0;
   right: 0;
   bottom: 0;
@@ -42,29 +43,16 @@ const IndexPage = ({ data }) => (
       </p>
       <Button>zoba to</Button>
     </ContentWrapper>
-    <ImageWrapper
-      src={data.file.childImageSharp.fluid.src}
-      srcSet={data.file.childImageSharp.fluid.srcSet}
-      sizes={data.file.childImageSharp.fluid.sizes}
-      alt=""
-    />
+    <StyledImage fluid={data.file.childImageSharp.fluid} />
   </>
 );
-//  duotone: { highlight: "#f00e2e", shadow: "#192550" }
+
 export const mainImage = graphql`
   {
     file(name: { eq: "rammstein" }) {
       childImageSharp {
-        fluid(
-          maxWidth: 800
-          maxHeight: 1200
-          quality: 100
-          duotone: { highlight: "#f00e2e", shadow: "#192550", opacity: 40 }
-          toFormat: JPG
-        ) {
-          src
-          srcSet
-          sizes
+        fluid(maxWidth: 800, maxHeight: 1200, quality: 80) {
+          ...GatsbyImageSharpFluid_tracedSVG
         }
       }
     }

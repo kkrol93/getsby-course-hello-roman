@@ -9,6 +9,7 @@ module.exports = {
     'gatsby-plugin-react-helmet',
     'gatsby-plugin-styled-components',
     'gatsby-plugin-layout',
+    'gatsby-plugin-mdx',
     {
       resolve: 'gatsby-plugin-prefetch-google-fonts',
       options: {
@@ -28,6 +29,13 @@ module.exports = {
       },
     },
     {
+      resolve: 'gatsby-source-filesystem',
+      options: {
+        name: 'articles',
+        path: `${__dirname}/src/data/`,
+      },
+    },
+    {
       resolve: 'gatsby-plugin-prettier-eslint',
       // this is the default configuration, override only what you need
       options: {
@@ -40,6 +48,7 @@ module.exports = {
         ignorePatterns: [
           '**/node_modules/**/*',
           '**/.git/**/*',
+          '**/.mdx/**/*',
           '**/dist/**/*',
           '.cache/**/*',
           'public/**/*',
