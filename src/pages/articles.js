@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
 import { graphql } from 'gatsby';
+import slugify from 'slugify';
 import ArticlePreview from '../components/ArticlePreview/ArticlePreview';
 import PageInfo from '../components/PageInfo/PageInfo';
 
@@ -18,19 +19,18 @@ const pageData = {
 
 const ArticlesPage = ({ data }) => {
   const {
-    allMdx: { nodes },
+    allDatoCmsArticle: { nodes },
   } = data;
   return (
     <>
       <PageInfo title={pageData.title} paragraph={pageData.paragraph} />
       <ArticlesWrapper>
-        {nodes.map(({ excerpt, frontmatter: { title, slug, featuredImage } }) => (
+        {nodes.map(({ title, feturedImage }) => (
           <ArticlePreview
-            key={slug}
+            key={title}
             title={title}
-            excerpt={excerpt}
-            image={featuredImage.childImageSharp.fluid}
-            slug={slug}
+            image={feturedImage.fluid}
+            slug={slugify(title, { lower: true })}
           />
         ))}
       </ArticlesWrapper>
@@ -40,20 +40,14 @@ const ArticlesPage = ({ data }) => {
 
 export const query = graphql`
   {
-    allMdx {
+    allDatoCmsArticle {
       nodes {
-        frontmatter {
-          title
-          slug
-          featuredImage {
-            childImageSharp {
-              fluid(maxWidth: 700, maxHeight: 500) {
-                ...GatsbyImageSharpFluid_tracedSVG
-              }
-            }
+        title
+        feturedImage {
+          fluid(maxWidth: 500) {
+            ...GatsbyDatoCmsFluid_tracedSVG
           }
         }
-        excerpt(pruneLength: 50)
       }
     }
   }

@@ -1,3 +1,5 @@
+require('dotenv').config();
+
 module.exports = {
   siteMetadata: {
     title: 'Gatsby Default Starter',
@@ -10,6 +12,17 @@ module.exports = {
     'gatsby-plugin-styled-components',
     'gatsby-plugin-layout',
     'gatsby-plugin-mdx',
+    // In your gatsby-config.js
+
+    {
+      resolve: 'gatsby-source-datocms',
+      options: {
+        // You can find your read-only API token under the Settings > API tokens
+        // section of your administrative area:
+        apiToken: process.env.API_DATO_CMS,
+      },
+    },
+
     {
       resolve: 'gatsby-plugin-prefetch-google-fonts',
       options: {
@@ -77,16 +90,6 @@ module.exports = {
       resolve: 'gatsby-transformer-remark',
       options: {
         plugins: [
-          {
-            resolve: 'gatsby-remark-prettier',
-            options: {
-              // Look for local .prettierrc file.
-              // The same as `prettier.resolveConfig(process.cwd())`
-              usePrettierrc: true,
-              // Overwrite prettier options, check out https://prettier.io/docs/en/options.html
-              prettierOptions: {},
-            },
-          },
           // any highlight plugin should be after
           'gatsby-remark-prismjs',
         ],
