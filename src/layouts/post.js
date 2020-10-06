@@ -13,7 +13,7 @@ export const query = graphql`
         ... on DatoCmsArticleImage {
           id
           articleImage {
-            fixed(width: 500) {
+            fixed(width: 750) {
               ...GatsbyDatoCmsFixed_tracedSVG
             }
           }
@@ -28,7 +28,7 @@ export const query = graphql`
         }
       }
       feturedImage {
-        fixed(width: 500) {
+        fixed(width: 750) {
           ...GatsbyDatoCmsFixed_tracedSVG
         }
       }
